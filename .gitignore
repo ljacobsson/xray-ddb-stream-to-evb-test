@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 
-samconfig.toml
+**/samconfig.toml
