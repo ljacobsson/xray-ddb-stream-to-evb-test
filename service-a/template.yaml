@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+  - AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    CodeUri: ./src
+    Runtime: nodejs14.x
+    MemorySize: 128
+    Timeout: 15
+    Tracing: Active
+Resources:
+  GetItem:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: GetItem.handler
+      Events:
+        GetItem:
+          Type: Api
+          Properties:
+            Method: get
+            Path: /item
+            RestApiId: !Ref Api
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      TracingEnabled: true
+Outputs:
+  ApiGatewayUrl:
+    Value: !Sub https://${Api}.execute-api.eu-west-1.amazonaws.com/Prod

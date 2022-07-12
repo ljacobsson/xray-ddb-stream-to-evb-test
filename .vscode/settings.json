@@ -1,0 +1,4 @@
+{
+  "cfn-resource-actions.stackName": "xray-test-service-a",
+  "cfn-resource-actions.AWSProfile": "private"
+}
