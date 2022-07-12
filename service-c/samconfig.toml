@@ -9,3 +9,4 @@ region = "eu-west-1"
 profile = "private"
 capabilities = "CAPABILITY_IAM"
 image_repositories = []
+ 
