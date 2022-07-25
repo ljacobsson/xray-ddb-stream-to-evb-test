@@ -20,7 +20,7 @@ Resources:
             EventBusName: custom
             Pattern:
               source: 
-                - service-b
+                - xray-test-service-b
   EventConsumerB:
     Type: AWS::Serverless::Function
     Properties:
@@ -32,4 +32,4 @@ Resources:
             EventBusName: custom
             Pattern:
               source: 
-                - service-b
+                - xray-test-service-b

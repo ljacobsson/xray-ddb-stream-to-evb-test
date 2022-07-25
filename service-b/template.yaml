@@ -1,5 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform:
+  - Name: env-event-utils-DynamoTrigger
+    Parameters:
+      TableName: DynamoTable
+      EventBusName: custom
   - 'AWS::Serverless-2016-10-31'
 Globals:
   Function:
@@ -45,30 +49,30 @@ Resources:
     Properties:
       StageName: Prod
       TracingEnabled: true
-  DynamoDbTrigger:
-    Type: 'AWS::Serverless::Function'
-    Properties:
-      Handler: DynamoDbTrigger.handler
-      Runtime: nodejs14.x
-      CodeUri: src/
-      MemorySize: 128
-      Timeout: 3
-      Events:
-        DynamoTable:
-          Type: DynamoDB
-          Properties:
-            Stream: !GetAtt DynamoTable.StreamArn
-            StartingPosition: TRIM_HORIZON
-            BatchSize: 100
-      Policies:
-        - Version: 2012-10-17
-          Statement:
-            - Sid: Statement1
-              Effect: Allow
-              Action:
-                - 'events:PutEvents'
-              Resource:
-                - '*'
+  # DynamoDbTrigger:
+  #   Type: 'AWS::Serverless::Function'
+  #   Properties:
+  #     Handler: DynamoDbTrigger.handler
+  #     Runtime: nodejs14.x
+  #     CodeUri: src/
+  #     MemorySize: 128
+  #     Timeout: 3
+  #     Events:
+  #       DynamoTable:
+  #         Type: DynamoDB
+  #         Properties:
+  #           Stream: !GetAtt DynamoTable.StreamArn
+  #           StartingPosition: TRIM_HORIZON
+  #           BatchSize: 100
+  #     Policies:
+  #       - Version: 2012-10-17
+  #         Statement:
+  #           - Sid: Statement1
+  #             Effect: Allow
+  #             Action:
+  #               - 'events:PutEvents'
+  #             Resource:
+  #               - '*'
   EventBus:
     Type: AWS::Events::EventBus
     Properties:

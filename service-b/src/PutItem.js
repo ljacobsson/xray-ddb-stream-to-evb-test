@@ -9,7 +9,7 @@ exports.handler = async function (event, context) {
     TableName: process.env.TABLE_NAME,
     Item: {
       id: Math.random().toString(),
-      _traceId: process.env["_X_AMZN_TRACE_ID"],
+      _xray_trace_id: process.env["_X_AMZN_TRACE_ID"],
     }
   }).promise();
   return {
