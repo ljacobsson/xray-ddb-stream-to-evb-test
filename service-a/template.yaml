@@ -12,12 +12,12 @@ Resources:
   GetItem:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: GetItem.handler
+      Handler: PutItem.handler
       Events:
         GetItem:
           Type: Api
           Properties:
-            Method: get
+            Method: put
             Path: /item
             RestApiId: !Ref Api
   Api:
